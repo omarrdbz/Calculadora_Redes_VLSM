@@ -1,4 +1,5 @@
 Creado por: Omar Díaz Buzo
+Con referencia al repositorio de KatzeeDev para calcular VLSM: https://github.com/KatzeeDev/Calculadora-VLSM/blob/main/vlsm.py
 
 ->Redes_app.py es una aplicación con interfaz gráfica para calcular:
 1. Máscara
