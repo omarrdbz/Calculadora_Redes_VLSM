@@ -255,17 +255,3 @@ class NetworkCalculatorApp():
 
 if __name__ == "__main__":
     app = NetworkCalculatorApp()
-    vlsm_calc = VLSMCalculator()
-    subnets, message = vlsm_calc.calculate_vlsm("197.5.0.0","25,14,45,15,12","24")
-
-    if not subnets:
-        print(message)
-    else:
-        for subnet in subnets:
-            print(f'\nInformación de la subred')
-            print(f'Dirección de Red:', subnet["Dirección de Red"])
-            print(f'Prefijo:', subnet["CIDR"])
-            print(f'Rango IP:', subnet["Rango de IP"])
-            print(f'Dirección de Broadcast:', subnet["Dirección de Broadcast"])
-            print(f'Máscara de Subred:', subnet["Máscara de Subred"])
-            print(f'Hosts direccionables:', subnet["Hosts direccionables"])
