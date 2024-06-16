@@ -1,7 +1,7 @@
 import tkinter as tk
-from redcetario_scripting import NetworkCalculator
-class NetworkCalculatorApp():
+from Network_Calculator import NetworkCalculator
 
+class NetworkCalculatorApp():
     def __init__(self):
         self.window = tk.Tk()
         self.window.title ("Calculadora de Redes")
@@ -14,7 +14,7 @@ class NetworkCalculatorApp():
 
         self.frame = tk.Frame(self.window)
         self.frame.pack()
-
+################################################################################################################################################
         # Calculadora de Red
         self.network_info_frame = tk.LabelFrame(self.frame, text = "Calculadora de Red", font=("Helvetica", 8, "bold"),)
         self.network_info_frame.grid(row= 0, column = 0, padx=20, pady=10)
@@ -42,10 +42,10 @@ class NetworkCalculatorApp():
         self.wild_card_mask_label = tk.Label(self.network_info_frame, text="Wild Card:", font=("Helvetica", 8, "bold"), anchor = "w")
         self.wild_card_mask_label.grid(row=3, column=0, pady = 3, sticky= 'W')
         
-        self.network_id_label = tk.Label(self.network_info_frame, text="IP de Red:", font=("Helvetica", 8, "bold"),)
+        self.network_id_label = tk.Label(self.network_info_frame, text="Dirección de Red:", font=("Helvetica", 8, "bold"),)
         self.network_id_label.grid(row=4, column=0, pady = 3, sticky= 'W')
         
-        self.broadcast_label = tk.Label(self.network_info_frame, text="IP de Broadcast:", font=("Helvetica", 8, "bold"),)
+        self.broadcast_label = tk.Label(self.network_info_frame, text="Dirección de Broadcast:", font=("Helvetica", 8, "bold"),)
         self.broadcast_label.grid(row=5, column=0, pady = 3, sticky= 'W')
         
         self.host_range_label = tk.Label(self.network_info_frame, text="Rango de Hosts:", font=("Helvetica", 8, "bold"),)
@@ -145,7 +145,7 @@ class NetworkCalculatorApp():
 
         self.subnet_host_result = tk.Label(self.network_info_frame, text="", anchor = "w")
         self.subnet_host_result.grid(row=19, column=1, pady = 3, sticky= 'W')
-
+################################################################################################################################################        
         self.window.mainloop()
     
     def calculate_network(self):
@@ -255,3 +255,17 @@ class NetworkCalculatorApp():
 
 if __name__ == "__main__":
     app = NetworkCalculatorApp()
+    vlsm_calc = VLSMCalculator()
+    subnets, message = vlsm_calc.calculate_vlsm("197.5.0.0","25,14,45,15,12","24")
+
+    if not subnets:
+        print(message)
+    else:
+        for subnet in subnets:
+            print(f'\nInformación de la subred')
+            print(f'Dirección de Red:', subnet["Dirección de Red"])
+            print(f'Prefijo:', subnet["CIDR"])
+            print(f'Rango IP:', subnet["Rango de IP"])
+            print(f'Dirección de Broadcast:', subnet["Dirección de Broadcast"])
+            print(f'Máscara de Subred:', subnet["Máscara de Subred"])
+            print(f'Hosts direccionables:', subnet["Hosts direccionables"])
