@@ -12,13 +12,13 @@ class VLSMCalculator():
         length_of_subnets = []
 
         if self._is_address_valid(ip_address) is False:
-            return None, "Dirección IP Inválida", None
+            return None, "Dirección IP Inválida.", None
         
         if self.is_prefix_correct(prefix) is False:
-            return None, "CIDR Inválido", None
+            return None, "CIDR Inválido.", None
         
         if self.is_host_number_correct(string_of_hosts) is False:
-            return None, "Existen Hosts Inválidos", None
+            return None, "Existen Hosts Inválidos.", None
         
         for hosts in network_hosts:
             hosts = int(hosts) + 2
@@ -41,16 +41,16 @@ class VLSMCalculator():
             if sum_all_hosts <= max_hosts:
                 self.inject_data_to_dict(ip_address, length_of_subnets, subnets)
             else:
-                return None, "La cantidad de Hosts excede el límite especificado por el CIDR", None
-        return subnets , "VLSM calculado Correctamente", network_hosts  
+                return None, "La cantidad de Hosts excede el límite especificado por el CIDR.", None
+        return subnets , "VLSM Calculado Correctamente.", network_hosts  
 
     def get_max_hosts(self, first_octet):
         if 1 <= first_octet < 128:
-            return pow(2, 24), "El maximo de host excede el limite para una Red de Clase A"
+            return pow(2, 24), "El maximo de host excede el límite para una Red de Clase A."
         elif 128 <= first_octet < 192:
-            return pow(2, 16), "El maximo de host excede el limite para una Red de Clase B"
+            return pow(2, 16), "El maximo de host excede el límite para una Red de Clase B."
         elif 192 <= first_octet < 224:
-            return pow(2, 8), "El maximo de host excede el limite para una Red de Clase C"
+            return pow(2, 8), "El maximo de host excede el límite para una Red de Clase C."
         return None, "Clase Inválida"
     
     # Function to inject calculated data into a dictionary

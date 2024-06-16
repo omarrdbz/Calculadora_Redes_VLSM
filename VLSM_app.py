@@ -76,6 +76,7 @@ class VLSMCalculatorApp():
 
         self.calculate_vlsm_button.grid(row=self.current_rows, column=0, sticky='W')
         self.message_label.grid(row=self.current_rows, column=1, sticky= 'W', pady = 5,columnspan=3)
+        self.message_label.config(text=f"")
     
     def add_row(self):
         # Create a new row with one Entry and six Labels
@@ -103,6 +104,7 @@ class VLSMCalculatorApp():
         hosts = ",".join(entry.get() for entry in self.entries)
         
         subnets, message, sorted_hosts = self.vlsm_calc.calculate_vlsm(ip_address, hosts, cidr)
+        self.message_label.config(text=message)
         if not subnets:
             self.message_label.config(text=message)
             for i in range(len(self.labels)):
@@ -113,7 +115,6 @@ class VLSMCalculatorApp():
                 self.labels[i][4].config(text="---")
                 self.labels[i][5].config(text="---")
         else:
-            self.message_label.config(text=f"")
             for i, subnet in enumerate(subnets):
                 entry = self.entries[i]
                 entry.delete(0, tk.END)
