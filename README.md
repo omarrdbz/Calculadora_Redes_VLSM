@@ -2,7 +2,7 @@
 
 -Con referencia al repositorio de KatzeeDev para calcular VLSM: https://github.com/KatzeeDev/Calculadora-VLSM/blob/main/vlsm.py
 
-->Redes_app.py es una aplicación con interfaz gráfica para calcular:
+->Network_app.py es una aplicación con interfaz gráfica para calcular:
 1. Máscara
 2. Wild Card
 3. Dirección de Red
@@ -25,4 +25,4 @@
 Pasos para ejecutarlo:
 1. Descargar y descomprimir el repositorio.
 2. Para la calculadora de VLSM, abrir el archivo VLSM_app.py dentro de la carpeta y ejecutar el código.
-3. Para la calculadora de Redes, abrir el archivo Redes_app.py dentro de la carpeta y ejecutar el código.
+3. Para la calculadora de Redes, abrir el archivo Network_app.py dentro de la carpeta y ejecutar el código.
