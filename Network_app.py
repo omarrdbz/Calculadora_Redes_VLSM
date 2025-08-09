@@ -184,7 +184,7 @@ class NetworkCalculatorApp():
         self.network_id_label_result.config(text=f"{self.network_calculator.network_address}")
         self.broadcast_label_result.config(text=f"{self.network_calculator.broadcast_address}")
         self.host_range_label_result.config(text=f"{self.network_calculator.host_range()}")
-        self.host_count_label_result.config(text=f"{self.network_calculator.directionable_hosts:,}")
+        self.host_count_label_result.config(text=f"{self.network_calculator.addressable_hosts:,}")
         self.subnet_count_label_result.config(text=f'{self.network_calculator.num_subnets}')
 
         self.host_entry.config(state="normal")
