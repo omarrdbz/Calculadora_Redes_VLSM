@@ -15,7 +15,7 @@ class NetworkCalculator():
                 self.cidr = int(cidr)
             self.num_subnets = 2 ** (self.cidr - self.default_prefix)
             self.subnet_size = 2 ** (32 - self.cidr)
-            self.directionable_hosts = self.subnet_size - 2
+            self.addressable_hosts = self.subnet_size - 2
             self.message_error = self.validate_data()
             if self.message_error == "":
                 self.network = ipaddress.ip_network(f"{self.ip_address_string}/{self.cidr}", strict=False)
@@ -83,7 +83,7 @@ class NetworkCalculator():
         print(f"Network ID: {self.network_address}")
         print(f"Subnet Broadcast address: {self.network.broadcast_address}")
         print(f"Host range: {self.host_range()}")
-        print(f"Max number of hosts: {self.subnet_size - 2}")
+        print(f"Max number of hosts: {self.addressable_hosts}")
         print(f"Number of subnets: {self.num_subnets}")
 
     def host_range(self):
@@ -106,8 +106,8 @@ class NetworkCalculator():
         return str(new_subnet_network.network_address)
 
     def get_host(self, host_index):
-        if not (0 < host_index <= self.subnet_size - 2):
-            self.message_error = f"El host debe estar entre 1 y {self.subnet_size - 2}"
+        if not (0 < host_index <= self.addressable_hosts):
+            self.message_error = f"El host debe estar entre 1 y {self.addressable_hosts}"
             return "Error"
         octets = list(map(int, str(self.network.network_address).split(".")))
         start = 0
@@ -124,12 +124,13 @@ class NetworkCalculator():
             hosts[j] = hosts[j] + octets[j]
         return '.'.join(map(str, hosts))
 
+
     def get_host_subnet(self, host_index, subnet_index):
         if not (0 < subnet_index <= self.num_subnets):
             self.message_error = f"La subred debe estar entre 1 y {self.num_subnets}"
             return "Error"
-        if not (0 < host_index <= self.subnet_size - 2):
-            self.message_error = f"El Host debe estar entre 1 y {self.subnet_size - 2}"
+        if not (0 < host_index <= self.addressable_hosts):
+            self.message_error = f"El Host debe estar entre 1 y {self.addressable_hosts}"
             return "Error"
         
         subnet_octets = list(map(int,self.get_subnet(subnet_index).split(".")))
