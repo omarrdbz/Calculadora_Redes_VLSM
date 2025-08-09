@@ -132,11 +132,13 @@ class VLSMCalculator():
         return True
     
     def is_prefix_correct(self, prefix):
+
         if not prefix.isdigit():
             return False
         value = int(prefix)
         if value < 0 or value > 32:
             return False
+          
         return True
     
     def is_host_number_correct(self, string_of_hosts):
