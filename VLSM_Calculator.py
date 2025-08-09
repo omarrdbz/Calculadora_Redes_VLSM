@@ -15,7 +15,7 @@ class VLSMCalculator():
             return None, "Dirección IP Inválida.", None
         
         if self.is_prefix_correct(prefix) is False:
-            return None, "CIDR Inválido.", None
+            return None, "CIDR inválido. El prefijo debe estar entre 0 y 32.", None
         
         if self.is_host_number_correct(string_of_hosts) is False:
             return None, "Existen Hosts Inválidos.", None
@@ -132,7 +132,7 @@ class VLSMCalculator():
         return True
     
     def is_prefix_correct(self, prefix):
-        if not prefix.isdigit() or int(prefix) < 0 or int(prefix) > 255:
+        if not prefix.isdigit() or int(prefix) < 0 or int(prefix) > 32:
             return False
         return True
     

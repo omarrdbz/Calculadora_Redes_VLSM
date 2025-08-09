@@ -67,7 +67,7 @@ class NetworkCalculator():
             if octet > 255 or octet < 0:
                 return "IP inválida"
         if self.cidr < 0 or self.cidr >32:
-            return "CIDR inválido"
+            return "CIDR inválido. Debe estar entre 0 y 32"
         if self.cidr < self.default_prefix:
             grouped_subnets = 1 / self.num_subnets
             self.num_subnets = f"Agrupa {int(grouped_subnets)} subredes de /{self.default_prefix}"
